@@ -1,31 +1,45 @@
-# Fast Shortest Path Distance Estimation
-## By Santiago García Mayayo & Niels Heslenfeld
+# Implementation and Analysis of a SAT Solver
+## By Santiago García Mayayo & Lucas Idsinga
  
-This GitHub repository contains Python code for estimating shortest path distances using landmarks. This project was our final project for the course Social Network Analysis for Computer Scientists at Leiden University taught by Dr. F.W. Takes.
+This GitHub repository contains C code for a Boolean Satisfiability (SAT) solver. This project was our final project for the course Software Verification at Leiden University taught by Dr. A.W. Laarman.
 
-The project builds upon the work by Potamias et al<a id="1">[1]</a> by adding some new landmark selection strategies. We added a strategy based on Betweenness centrality, one that constructs a linear combination of Degree, Closeness centrality and Betweenness centrality, and a newly proposed centrality measure. These strategies are mostly based on those used in the original paper and strategies proposed/used by other researchers in this area. Most of our proposed methods turned out to perform quite well (see figure below).
+The project implements a DPLL-based algorithm incorporating unit propagation, pure literal elimination, and the 2-Watched Literals strategy. We focused on creating an efficient search process with a positive memory usage profile by implementing a custom undo stack instead of cloning the formula during backtracking. Most of our methods, particularly the 2-Watched Literals and the "Most Appearances" heuristic, performed quite well in our experiments (see table in docs/ or results section).
 
 ![alt text](./results/results.png)
 
-Using these strategies to select a "good" set of landmarks, we aim to approximate the shortest path distances in the graph as well as possible. Approximation is necessary as for very large graphs (>1M nodes), the exact computation becomes too expensive.
+Using these strategies, we aim to determine if there exists an assignment of variables that makes a Boolean formula true. High efficiency is necessary as SAT is an NP-complete problem, and solving large formulas can become computationally expensive without proper optimizations like 2-Watched Literals.
 
-The required packages (and their used version) that are not part of the standard library are:
-- igraph (0.10.8)
-- numpy (1.21.5)
-- pandas (1.3.5)
-- matplotlib (3.5.2)
-- metis (0.2a5)
+### **Requirements**
 
-We have no indications that slightly older/newer versions might break the program but the requirements.txt file is defaulted to these versions. So either the requirements.txt file can be used to install these packages or one can simply run:
+The program is implemented in C to ensure predictable and efficient memory usage. The required library (and its used version) that is not part of the standard library is:
+- GLib 2.0 (2.75.0 or newer recommended)
+
+On Ubuntu/WSL, you can install the library by running:
 
 ```
-> pip install igraph numpy pandas matplotlib metis
+> sudo apt install libglib2.0-dev
 ```
 
-After that, make sure that all the paths of the environment are set correctly so that the required packages can be found and make sure that the datasets (edge lists of graphs) are in the datasets/ folder. The folder is empty due to git not accepting large files so feel free to add your own datasets. However, do make sure to then also add the names of the dataset files (in tsv format and with .tsv extension) in the DATASETS list in function init() in code/settings.py so that the correct datasets will be used. If you are using datasets with directed networks, also make sure to change the if-statement on line 59 in function main() in main.py to detect these directed datasets. Results will automatically be visualized in a plot which will be stored in the results/ folder.
+### **Usage**
+
+After installing the dependencies, make sure that the folder structure is correct. You can compile and run the solver using the provided Makefile:
+
+```
+> make
+> ./sat_solver tests/uf50-01.cnf
+```
+The tests/ folder contains several CNF formulas in DIMACS format. If you wish to run the full battery of tests, use the provided script:
+```
+> chmod +x run_tests.sh
+> ./run_tests.sh
+```
 
 ### References
 <a id="1">[1]</a>
-M. Potamias, F. Bonchi, C. Castillo, and A. Gionis (2009). 
-Fast shortest path distance estimation in large networks. 
-Proceedings of the 18th ACM Conference on Information and Knowledge Management (CIKM), 867-876.
+S.A. Cook (1971). The complexity of theorem-proving procedures. Proceedings of the 3rd Annual ACM Symposium on Theory of Computing, 151-158. 
+
+<a id="2">[2]</a>
+J. Franco and J. Martin (2021). A history of satisfiability. Handbook of Satisfiability, Second Edition, 3-74. 
+
+<a id="3">[3]</a>
+M.W. Moskewicz et al. (2001). Chaff: Engineering an efficient SAT solver. Proceedings of the 38th Design Automation Conference (DAC), 530-535.
