@@ -5,10 +5,11 @@ This GitHub repository contains C code for a Boolean Satisfiability (SAT) solver
 
 The project implements a DPLL-based algorithm incorporating unit propagation, pure literal elimination, and the 2-Watched Literals strategy. We focused on creating an efficient search process with a positive memory usage profile by implementing a custom undo stack instead of cloning the formula during backtracking. Most of our methods, particularly the 2-Watched Literals and the "Most Appearances" heuristic, performed quite well in our experiments (see table in docs/ or results section).
 
-![Plot representing the average performance of the SAT solver across the test
+![](./results/SAT-UNSAT-Comparison.png)
+*Figure 1: Plot representing the average performance of the SAT solver across the test
 cases for both SAT and UNSAT results. Error bars represent the range of results, with
 a cut-off of 1 hour. Any results that triggered the cut-off are set to 1 hour.
-](./results/SAT-UNSAT-Comparison.png)
+*
 
 Using these strategies, we aim to determine if there exists an assignment of variables that makes a Boolean formula true. High efficiency is necessary as SAT is an NP-complete problem, and solving large formulas can become computationally expensive without proper optimizations like 2-Watched Literals.
 
