@@ -3,7 +3,7 @@
  
 This GitHub repository contains C code for a Boolean Satisfiability (SAT) solver. This project was our final project for the course Software Verification at Leiden University taught by Dr. A.W. Laarman.
 
-The project implements a DPLL-based algorithm incorporating unit propagation, pure literal elimination, and the 2-Watched Literals strategy. We focused on creating an efficient search process with a positive memory usage profile by implementing a custom undo stack instead of cloning the formula during backtracking (see Figure 1). Most of our methods, particularly the 2-Watched Literals and the "Most Appearances" heuristic, performed quite well in our experiments (see Figure 2).
+The project implements a DPLL-based algorithm incorporating unit propagation, pure literal elimination, and the 2-Watched Literals strategy. We focused on creating an efficient search process with a positive memory usage profile by implementing a custom undo stack instead of cloning the formula during backtracking (see Figure 1). Most of our methods, particularly the 2-Watched Literals and the "Most Appearances" heuristic, performed quite well in our experiments. Figure 2 shows the performance comparison between the SAT and UNSAT average performance results.
 <p align="center">
   <img src="./results/UNSAT.png" width="48%" alt="Memory usage with cloning (UNSAT)" />
   &nbsp; &nbsp;
