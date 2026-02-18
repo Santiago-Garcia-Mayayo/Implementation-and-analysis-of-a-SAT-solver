@@ -13,7 +13,13 @@ cases for both SAT and UNSAT results. Error bars represent the range of results,
 a cut-off of 1 hour. Any results that triggered the cut-off are set to 1 hour.
 </em>
 </p>
-
+<p align="center">
+  <img src="./results/UNSAT.jpg" width="48%" alt="Memory usage with cloning (UNSAT)" />
+  &nbsp; &nbsp;
+  <img src="./results/UNSAT stack.png" width="48%" alt="Memory usage with undo stack (UNSAT)" />
+  <br>
+  <em>Figure 2: Memory consumption comparison for an UNSAT instance. <b>Left:</b> High memory volatility and garbage collection spikes using traditional formula cloning. <b>Right:</b> Stable and highly optimized memory footprint achieved via our custom undo stack implementation.</em>
+</p>
 Using these strategies, we aim to determine if there exists an assignment of variables that makes a Boolean formula true. High efficiency is necessary as SAT is an NP-complete problem, and solving large formulas can become computationally expensive without proper optimizations like 2-Watched Literals.
 
 ### **Requirements**
