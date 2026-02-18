@@ -41,11 +41,19 @@ After installing the dependencies, make sure that the folder structure is correc
 > make
 > ./sat_solver tests/uf50-01.cnf
 ```
-The tests/ folder contains several CNF formulas in DIMACS format. If you wish to run the full battery of tests, use the provided script:
+The tests/ directory contains a sample set of 24 CNF formulas in DIMACS format. These are sufficient to verify the solver's correctness and observe the memory optimizations. If you wish to run this included battery of tests automatically, use the provided bash script:
 ```
 > chmod +x run_tests.sh
 > ./run_tests.sh
 ```
+If you wish to replicate the full scale of our experiments, the complete datasets can be obtained from the [SATLIB - Benchmark Problems dataset](https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html) hosted by the University of British Columbia. The chosen test cases consist of 4 sets of problems from the Uniform Random-3-SAT
+data set, as this set provides both satisfiable and unsatisfiable problems of the
+same format. For both the SAT and UNSAT cases, the first 10 problems in each
+of the following sets are chosen and used in the experiment:
+* 50 variables, 218 clauses
+* 100 variables, 430 clauses
+* 175 variables, 753 clauses
+* 250 variables, 1065 clauses
 
 ### References
 <a id="1">[1]</a>
