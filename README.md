@@ -14,7 +14,7 @@ a cut-off of 1 hour. Any results that triggered the cut-off are set to 1 hour.
 </em>
 </p>
 <p align="center">
-  <img src="./results/UNSAT.jpg" width="48%" alt="Memory usage with cloning (UNSAT)" />
+  <img src="./results/UNSAT.png" width="48%" alt="Memory usage with cloning (UNSAT)" />
   &nbsp; &nbsp;
   <img src="./results/UNSAT stack.png" width="48%" alt="Memory usage with undo stack (UNSAT)" />
   <br>
